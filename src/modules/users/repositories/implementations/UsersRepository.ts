@@ -32,9 +32,9 @@ class UsersRepository implements IUsersRepository {
   }
 
   findById(id: string): User | undefined {
-    const idUser = this.users.find((user) => user.id === id)
+    const idUser = this.users.find(user => user.id === id)
 
-    if(!idUser) {
+    if (!idUser) {
       throw new Error('ID not found')
     }
 
@@ -43,10 +43,6 @@ class UsersRepository implements IUsersRepository {
 
   findByEmail(email: string): User | undefined {
     const emailUser = this.users.find(user => user.email === email)
-
-    if(!emailUser) {
-      throw new Error('Email not found')
-    }
 
     return emailUser
   }
@@ -59,7 +55,11 @@ class UsersRepository implements IUsersRepository {
   }
 
   list(): User[] {
-    return this.users;
+    if(this.users.length === 0) {
+      throw new Error('Not exists users yet')
+    }
+    
+    return this.users
   }
 }
 

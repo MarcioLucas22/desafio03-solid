@@ -8,12 +8,8 @@ interface IRequest {
 class ListAllUsersUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
-  execute({ user_id }: IRequest): User[] {
+  execute(): User[] {
     const listUsers = this.usersRepository.list()
-
-    if(!listUsers) {
-      throw new Error('Not exists users yet')
-    }
 
     return listUsers
   }
